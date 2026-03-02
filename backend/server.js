@@ -5,7 +5,7 @@ const fs = require("fs");
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static("frontend"));
 
 let db = JSON.parse(fs.readFileSync("database.json"));
 
