@@ -1,0 +1,25 @@
+{
+  "hospitals": [
+    {
+      "id": 1,
+      "name": "City Trauma Center",
+      "level": "Major",
+      "distance": 5,
+      "available": true
+    },
+    {
+      "id": 2,
+      "name": "Metro Emergency Hospital",
+      "level": "Moderate",
+      "distance": 3,
+      "available": true
+    },
+    {
+      "id": 3,
+      "name": "Local Clinic",
+      "level": "Minor",
+      "distance": 2,
+      "available": true
+    }
+  ]
+}
