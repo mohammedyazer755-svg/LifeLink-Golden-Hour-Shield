@@ -1,0 +1,9 @@
+[MPU6050 + GPS + Buzzer]
+            ↓
+      [ESP32 Controller]
+            ↓ (WiFi)
+   [Cloud Backend Server]
+            ↓
+   [Hospital Dashboard]
+            ↓
+   [Emergency Dispatch]
