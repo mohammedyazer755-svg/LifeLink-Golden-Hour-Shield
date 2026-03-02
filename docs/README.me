@@ -1,1 +1,105 @@
-
+LifeLink – Technical Documentation
+Golden Hour Emergency Intelligence System
+1️⃣ System Overview
+LifeLink is an integrated accident detection and emergency coordination system designed to reduce fatalities during the Golden Hour. The system combines IoT hardware, real-time data processing, and intelligent hospital allocation to ensure rapid emergency response.
+The architecture is divided into four major layers:
+Sensor Layer
+Processing Layer
+Cloud & Intelligence Layer
+Response & Coordination Layer
+2️⃣ System Architecture
+🔹 Sensor Layer
+This layer is responsible for collecting real-world accident data.
+Components:
+MPU6050 Accelerometer & Gyroscope
+GPS Module (NEO-6M)
+Optional vehicle power monitoring
+Function:
+Continuously monitors acceleration across X, Y, Z axes
+Detects sudden impact forces
+Captures real-time location coordinates
+🔹 Processing Layer
+Implemented using ESP32 microcontroller.
+Responsibilities:
+Reads acceleration values
+Calculates total impact force
+Classifies severity
+Triggers emergency protocol
+Activates buzzer for 10-second cancellation window
+Impact force is calculated using:
+Total Acceleration = √(x² + y² + z²)
+🔹 Cloud & Intelligence Layer
+Implemented using Node.js + Express backend.
+Responsibilities:
+Receives accident data
+Classifies final severity
+Performs smart hospital allocation
+Prevents duplicate case assignments
+Maintains emergency state tracking
+🔹 Response Layer
+Frontend dashboard for hospital monitoring.
+Responsibilities:
+Displays accident severity
+Shows live location
+Allows case acceptance
+Updates system availability status
+3️⃣ Severity Classification Algorithm
+Impact thresholds:
+Minor: > 2g
+Moderate: > 4g
+Major: > 6g
+Logic:
+Continuous acceleration monitoring
+If threshold exceeded → mark as potential accident
+Trigger 10-second confirmation window
+If not cancelled → confirm accident
+Assign severity category
+This ensures false positives (like potholes or braking) are reduced.
+4️⃣ Smart Hospital Allocation Logic
+The backend follows this allocation sequence:
+Filter hospitals based on severity capability
+Remove unavailable hospitals
+Sort eligible hospitals by distance
+Assign nearest capable hospital
+Lock hospital to prevent double assignment
+Fallback Strategy: If no hospital is available for that severity:
+Escalate to higher-capability hospital
+Trigger notification for manual override
+5️⃣ Emergency Workflow
+Impact detected
+Severity classified
+GPS coordinates captured
+Data transmitted to backend
+Backend assigns hospital
+Dashboard displays alert
+Emergency response initiated
+6️⃣ Hardware–Software Integration
+Hardware detects accident →
+Microcontroller processes data →
+Cloud backend validates & allocates →
+Frontend dashboard displays emergency →
+Response initiated
+This integrated flow minimizes delay and improves coordination efficiency.
+7️⃣ Security Considerations
+Controlled API endpoints
+Read-only hospital dashboard
+Isolated severity engine
+Structured data handling
+Future versions may include:
+Token authentication
+Encrypted medical record storage
+Role-based access control
+8️⃣ Future Scope
+AI-based crash prediction
+Real-time ambulance GPS tracking
+Integration with national emergency APIs
+Machine learning severity optimization
+Driver health monitoring integration
+Vehicle OBD-II speed integration
+Scalable cloud deployment
+9️⃣ Project Objective
+The primary goal of LifeLink is to reduce emergency response delay and improve survival probability during the Golden Hour by:
+Automating accident detection
+Eliminating manual reporting delay
+Enabling intelligent hospital allocation
+Improving coordination efficiency
